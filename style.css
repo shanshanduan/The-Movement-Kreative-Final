@@ -168,9 +168,10 @@ a:active {
 @media (max-width: 768px) {
   /* Splash screen - logo with ample margin */
   .intro-logo {
-    width: 70%;
-    max-width: 300px;
-    margin: 0 20px;
+    width: 60%;
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
   }
 
   /* Hero section - black background for mobile */
