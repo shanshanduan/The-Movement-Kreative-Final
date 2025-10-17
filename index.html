@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TMK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="image/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link href="style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+
+  <body>
+    <!-- Intro Splash Screen -->
+      <div class="intro-splash" id="introSplash">
+        <img src="svg/Full logo.svg" alt="TMK logo" class="intro-logo" id="introLogo">
+      </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video 
+      class="hero-video" 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      id="heroVideo"
+    >
+      <source src="image/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="video-control" id="videoControl" aria-label="Pause video">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4H10V20H6V4ZM14 4H18V20H14V4Z" fill="white"/>
+      </svg>
+    </button>
+  </section>
+
+ <!-- About Section -->
+ <section class="about fade-in-section">
+  <div class="text-block">
+    <p>
+      The Movement Kreative (TMK) is an agency devoted to Creative Movement Direction — representing artists who shape the visual and emotional language of contemporary culture. Founded by Aeil Park and Stephen Galloway, TMK formalizes a discipline that has long influenced fashion, beauty, entertainment, and art.
+    </p>
+    <p>
+      Operating at the intersection of image-making, filmmaking, and performance, TMK’s directors specialize in storytelling, embodied direction, and energetic composition — translating intention into impact across portraiture, runway, advertising, live performance, and brand expression.
+    </p>
+  </div>
+  <div class="founders">
+    <img src="image/founders.png" alt="Founders" />
+  </div>
+</section>
+
+ <!-- Footer Section -->
+ <footer class="footer fade-in-section">
+  <div class="footer-left">
+    <img src="svg/logo.svg" alt="TMK logo" class="footer-logo">
+  </div>
+  <div class="footer-right">
+    <div class="contact-column">
+      <p class="contact-label">CONTACT</p>
+    </div>
+    <div class="emails-column">
+      <p><a href="mailto:alp@themovementkreative.com">alp@themovementkreative.com</a></p>
+      <p><a href="mailto:srg@themovementkreative.com">srg@themovementkreative.com</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Intro splash screen animation
+  document.body.classList.add('intro-active');
+  
+  const introSplash = document.getElementById('introSplash');
+  const introLogo = document.getElementById('introLogo');
+  
+  // After 200ms, fade in the logo
+  setTimeout(() => {
+    introLogo.classList.add('show');
+  }, 200);
+  
+  // After 2 seconds total, fade out the logo
+  setTimeout(() => {
+    introLogo.classList.remove('show');
+    introLogo.classList.add('hide');
+  }, 2000);
+  
+  // After 2.8 seconds, fade out the entire splash screen
+  setTimeout(() => {
+    introSplash.classList.add('fade-out');
+    document.body.classList.remove('intro-active');
+  }, 2800);
+  
+  // After 3.4 seconds, remove the splash screen from DOM
+  setTimeout(() => {
+    introSplash.style.display = 'none';
+  }, 3400);
+</script>
+
+<script>
+  // Video control
+  const video = document.getElementById('heroVideo');
+  const control = document.getElementById('videoControl');
+  
+  control.addEventListener('click', function() {
+    if (video.paused) {
+      video.play();
+      control.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4H10V20H6V4ZM14 4H18V20H14V4Z" fill="white"/></svg>';
+      control.setAttribute('aria-label', 'Pause video');
+    } else {
+      video.pause();
+      control.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5V19L19 12L8 5Z" fill="white"/></svg>';
+      control.setAttribute('aria-label', 'Play video');
+    }
+  });
+</script>
+
+<script>
+  // Scroll animation
+  const faders = document.querySelectorAll('.fade-in-section');
+  
+  const appearOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -100px 0px"
+  };
+  
+  const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        return;
+      } else {
+        entry.target.classList.add('is-visible');
+        appearOnScroll.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
+  
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+</script>
+
+  </body>
+</html>
