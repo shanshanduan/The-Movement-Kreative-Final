@@ -308,10 +308,13 @@ a:active {
 }
 
 .intro-logo {
-  width: 400px;
+  width: 200px;
+  max-width: 80%;
   height: auto;
   opacity: 0;
   transition: opacity 0.3s ease-out;
+  display: block;
+  margin: 0 auto;
 }
 
 .intro-logo.show {
