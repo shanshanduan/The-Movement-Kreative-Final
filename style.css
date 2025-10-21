@@ -59,6 +59,9 @@ p {
   pointer-events: none;
 }
 
+.mute-control {
+  right: 50px;
+}
 
 /* About section */
 .about {
@@ -207,10 +210,14 @@ a:active {
   .video-control {
     bottom: 15px;
     right: 15px;
-    width: 40px;
+    width: 30px;
     height: 40px;
   }
 
+  .mute-control {
+    right: 50px;
+  }
+  
   /* About section - smaller proportional text */
   .about {
     padding: 7rem 1.5rem;

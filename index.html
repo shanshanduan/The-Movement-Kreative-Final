@@ -21,7 +21,8 @@
   <section class="hero">
     <video 
     class="hero-video" 
-    controls
+    autoplay
+    muted
     loop 
     playsinline
     id="heroVideo"
@@ -34,6 +35,13 @@
         <path d="M6 4H10V20H6V4ZM14 4H18V20H14V4Z" fill="white"/>
       </svg>
     </button>
+    <button class="video-control mute-control" id="muteControl" aria-label="Unmute video">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
   </section>
 
  <!-- About Section -->
@@ -110,6 +118,7 @@
   const video = document.getElementById('heroVideo');
   const control = document.getElementById('videoControl');
   
+  // Play/Pause functionality
   control.addEventListener('click', function() {
     if (video.paused) {
       video.play();
@@ -119,6 +128,21 @@
       video.pause();
       control.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5V19L19 12L8 5Z" fill="white"/></svg>';
       control.setAttribute('aria-label', 'Play video');
+    }
+  });
+  
+  // Mute/Unmute functionality
+  const muteControl = document.getElementById('muteControl');
+  
+  muteControl.addEventListener('click', function() {
+    if (video.muted) {
+      video.muted = false;
+      muteControl.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      muteControl.setAttribute('aria-label', 'Mute video');
+    } else {
+      video.muted = true;
+      muteControl.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
+      muteControl.setAttribute('aria-label', 'Unmute video');
     }
   });
 </script>
